@@ -1,0 +1,5 @@
+/Users/mton/Projects/LinqPractice/LinqPractice/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mton/Projects/LinqPractice/LinqPractice/bin/Debug/LinqPractice.exe.mdb
+/Users/mton/Projects/LinqPractice/LinqPractice/bin/Debug/LinqPractice.exe
+/Users/mton/Projects/LinqPractice/LinqPractice/obj/x86/Debug/LinqPractice.exe
+/Users/mton/Projects/LinqPractice/LinqPractice/obj/x86/Debug/LinqPractice.exe.mdb
