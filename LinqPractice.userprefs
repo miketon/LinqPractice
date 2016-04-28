@@ -1,1 +1,12 @@
-﻿<Properties StartupItem="LinqPractice/LinqPractice.csproj" />
+﻿<Properties StartupItem="LinqPractice/LinqPractice.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LinqPractice/Program.cs">
+    <Files>
+      <File FileName="LinqPractice/Program.cs" Line="11" Column="66" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
