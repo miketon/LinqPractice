@@ -24,7 +24,44 @@ namespace LinqPractice {
       DateTime combinedFuncExtended = date.Combined(time); //sugar
       Console.WriteLine ("Combined date and time! {0}", combined);
       Console.WriteLine ("Combined date and time Function! {0}", combinedFunc);
-      Console.WriteLine ("Combined (extension) date and time Function! {0}", combinedFuncExtended);
+      Console.WriteLine ("Combined (extension) date wand time Function! {0}", combinedFuncExtended);
+
+      // All Moo() methods point to the same memory space in each cow instance
+      // But each instance have their own copy of numMoos, so each instance size == int memory footprint
+      Cow c = new Cow();
+      c.Moo(); //1
+      c.Moo(); //2
+      c.Moo(); //3
+      Cow c2 = new Cow();
+      c2.Moo(); //1
+      c2.Moo(); //2
+      
+      // Extension version of Moo()
+      Cow.MooExt(c); //4 - uses the instance numMoos from c and continues the count
+      Cow.MooExt(c); //5
+      Cow.MooExt(c); //6
     }
   }
+
+  //size of class is int : What it takes to store numMoos
+  //Moo is static. All calls to it reference the same space in memory.
+  //! Interesting : All methods (including instance methods) are static.
+  class Cow{ 
+    // instanced tracks this cow
+    int numMoos;
+    
+    // static : All methods are static
+    public void Moo(){
+      this.numMoos++;
+      Console.WriteLine("Moo {0}", this.numMoos);
+    }
+
+    // static equivalent to Moo() ; What extensions do under the hood
+    public static void MooExt(Cow _this){
+      _this.numMoos++;
+      Console.WriteLine("Moo {0}", _this.numMoos);
+    }
+
+  }
+
 }
