@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Linq; //extension method for array that allows Where and Select
 
 namespace LinqPractice {
 
@@ -14,18 +14,29 @@ namespace LinqPractice {
         where n < 5      
         select n;
 
-      // No sugar
-      var resultNoSugar = 
+      // Less sugar - Using Linq extension to Arrays
+      var resultLessSugar = 
         numbers
           .Where(n => n < 5)
           .Select(n => n);
+
+      // No sugar - Using Enumerable
+      var noSugar =
+        Enumerable.Select(
+          Enumerable.Where(numbers, n => n < 5), 
+          n => n
+        );
 
       foreach(int i in result){
         Console.WriteLine("HelloLinq : {0}", i);
       }
 
-      foreach(int i in resultNoSugar){
-        Console.WriteLine("Linq No Sugar : {0}", i);
+      foreach(int i in resultLessSugar){
+        Console.WriteLine("Linq Less Sugar : {0}", i);
+      }
+
+      foreach (int i in noSugar) {
+        Console.WriteLine("No Sugar : {0}", i);
       }
 
       // characters
