@@ -12,6 +12,7 @@ namespace LinqPractice {
       Console.WriteLine("MyWhere : {0}", ints);
       foreach(int i in ints){
         if(predicate(i)){
+//          Console.WriteLine("MyWhere : Predicate True {0}", i);
           yield return i;
         }
       }
@@ -26,14 +27,27 @@ namespace LinqPractice {
       int[] numbers = new[] { 2, 4, 8, 1, 9, 2, 0, 3, 4, 2};
       var result = 
         from n in numbers
-        where n < 5      
-        select n;
+        where n < 5  // This is using our local Where...WTH, why doesn't capitlization matter????
+        select n;    //degenerate clause, doesn't do anything. compiler deletes it
+
+      foreach(int i in result){
+        Console.WriteLine("HelloLinq : {0}", i);
+      }
+
+      HelloLinqBreakdown();
+
+    }
+
+    public void HelloLinqBreakdown () {
+
+      // numbers
+      int[] numbers = new[] { 2, 4, 8, 1, 9, 2, 0, 3, 4, 2};
 
       // Less sugar - Using Linq extension to Arrays (which implements IEnumerable)
       var resultLessSugar = 
         numbers
-          .Where(n => n < 5)
-          .Select(n => n);
+          .Where(n => n < 5);
+//          .Select(n => n); //degenerate clause, doesn't do anything. compiler deletes it
 
       // No sugar - Using Enumerable
       var noSugar =
@@ -47,16 +61,8 @@ namespace LinqPractice {
         Console.WriteLine("No Sugar : {0} with MTON.Where", i);
       }
 
-      foreach(int i in result){
-        Console.WriteLine("HelloLinq : {0}", i);
-      }
-
       foreach(int i in resultLessSugar){
         Console.WriteLine("Linq Less Sugar : {0}", i);
-      }
-
-      foreach (int i in noSugar) {
-        Console.WriteLine("No Sugar : {0}", i);
       }
 
       // characters
