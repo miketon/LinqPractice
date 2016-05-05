@@ -23,18 +23,19 @@ namespace LinqPractice {
 
     public HelloLinq () {
 
-      // numbers
-      int[] numbers = new[] { 2, 4, 8, 1, 9, 2, 0, 3, 4, 2};
-      var result = 
-        from n in numbers
-        where n < 5  // This is using our local Where...WTH, why doesn't capitlization matter????
-        select n;    //degenerate clause, doesn't do anything. compiler deletes it
+//      // numbers
+//      int[] numbers = new[] { 2, 4, 8, 1, 9, 2, 0, 3, 4, 2};
+//      var result = 
+//        from n in numbers
+//        where n < 5  // This is using our local Where...WTH, why doesn't capitlization matter????
+//        select n;    //degenerate clause, doesn't do anything. compiler deletes it
+//
+//      foreach(int i in result){
+//        Console.WriteLine("HelloLinq : {0}", i);
+//      }
 
-      foreach(int i in result){
-        Console.WriteLine("HelloLinq : {0}", i);
-      }
-
-      HelloLinqBreakdown();
+//      HelloLinqBreakdown();
+      LargerTranslation();
 
     }
 
@@ -74,6 +75,62 @@ namespace LinqPractice {
 
       foreach(char c in vowels){
         Console.WriteLine("Vowels : {0}", c);
+      }
+
+    }
+
+
+    public void LargerTranslation () {
+
+      // numbers
+      int[] numbers = new[] { 2, 4, 8, 1, 9, 2, 0, 3, 4, 2};
+
+      var result1 = 
+        from n in numbers
+        where n < 5 
+        where n > 0
+        where new Random().Next() == 23
+        orderby n
+        orderby n * 2 + 3
+        orderby 5
+        select n;
+
+      // Less Sugar
+      var result2 = 
+//        from n in numbers
+        numbers
+          .OrderBy(n => 8)
+          .Where(n => n < 5)
+          .Where(n => n > 0)
+          .Where(n => new Random().Next()==23)
+          .OrderBy(n => n)
+          .OrderBy(n => n*2+3)
+          .OrderBy(n => 5);
+//          .Select(n => n); // degenerate, compiler removes
+
+      // No Sugar
+      var result3 = 
+//        from n in numbers
+        Enumerable.OrderBy(
+          Enumerable.OrderBy(
+            Enumerable.OrderBy(
+              Enumerable.Where(
+                Enumerable.Where(
+                  Enumerable.Where(
+                    Enumerable.OrderBy(numbers, n => 8), n => n < 5), n => n > 0), 
+                    n => new Random().Next()==23), n => n), n => n*2+3), n => 5);
+//          .Select(n => n); // degenerate, compiler removes
+
+      foreach(int i in result1){
+        Console.WriteLine("HelloLinq : {0}", i);
+      }
+
+      foreach(int i in result2){
+        Console.WriteLine("HelloLinq : Less Sugar {0}", i);
+      }
+
+      foreach(int i in result3){
+        Console.WriteLine("HelloLinq : No Sugar {0}", i);
       }
 
     }
