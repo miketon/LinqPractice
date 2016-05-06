@@ -8,7 +8,8 @@ namespace LinqPractice {
       Console.WriteLine("Main Man");
 //      var dateExample = new DateExample();
 //      dateExample.Main(); // DateTime Object extension
-      var HelloLinqExample = new HelloLinq();
+//      var HelloLinqExample = new HelloLinq();
+      var DeferredExecutionExample = new DeferredExecution();
     }
  
  }
