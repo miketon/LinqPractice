@@ -28,14 +28,17 @@ namespace LinqPractice {
     public DeferredExecution () {
       Console.WriteLine("Deferring Hello World");
       int[] stuff = {1, 3, 5, 1, 1, 7, 9};
-      var result = 
+      IEnumerable<int> result = 
         from i in stuff
         where i < 5
         select i;
-     
-      foreach(int entry in result){
-        Console.WriteLine("defer {0}", entry);
+
+      IEnumerator<int> rator = result.GetEnumerator();
+
+      while(rator.MoveNext()){
+        Console.WriteLine("rator : {0}", rator.Current);
       }
+
     }
 
   }
