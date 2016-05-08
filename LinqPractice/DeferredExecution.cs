@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LinqPractice {
 
-  public static class MTON_DEF{
+  static class MTON_DEF{
 
-    static IEnumerable<T> Where<T>(this IEnumerable<T> items, Func<T, bool> gauntlet){
+    public static IEnumerable<T> Where<T>(this IEnumerable<T> items, Func<T, bool> gauntlet){
       Console.WriteLine("Where {0}", 1);
       foreach (T item in items){
         if(gauntlet(item)){
@@ -14,7 +15,7 @@ namespace LinqPractice {
       }
     }
 
-    static IEnumerable<R> Select<T, R>(this IEnumerable<T> items, Func<T, R> transform){
+    public static IEnumerable<R> Select<T, R>(this IEnumerable<T> items, Func<T, R> transform){
       Console.WriteLine("Select {0}", 2);
       foreach(T item in items){
         yield return transform(item);
@@ -31,9 +32,21 @@ namespace LinqPractice {
       IEnumerable<int> result = 
         from i in stuff
         where i < 5
-        select i;
+        select i + 6; //must use Linq, doesn't work with my static Select??? Why???
 
-      IEnumerator<int> rator = result.GetEnumerator();
+      // Less sugar
+      IEnumerable<int> result1 = 
+//        from i in stuff
+        stuff
+          .Where(i => i < 5)
+          .Select(i => i + 1);
+
+      // No sugar
+      IEnumerable<int> result2 =
+        MTON_DEF.Select(MTON_DEF.Where(stuff, i => i < 5), 
+          i => i + 2);
+
+      IEnumerator<int> rator = result2.GetEnumerator();
 
       while(rator.MoveNext()){
         Console.WriteLine("rator : {0}", rator.Current);
