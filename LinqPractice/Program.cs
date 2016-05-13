@@ -9,7 +9,8 @@ namespace LinqPractice {
 //      var dateExample = new DateExample();
 //      dateExample.Main(); // DateTime Object extension
 //      var HelloLinqExample = new HelloLinq();
-      var DeferredExecutionExample = new DeferredExecution();
+//      var DeferredExecutionExample = new DeferredExecution();
+      var AssemblyLine = new AssemblyLine();
     }
  
  }
