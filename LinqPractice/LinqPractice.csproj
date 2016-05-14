@@ -39,6 +39,7 @@
     <Compile Include="HelloLinq.cs" />
     <Compile Include="DeferredExecution.cs" />
     <Compile Include="AssemblyLine.cs" />
+    <Compile Include="AssemblyLineRunTime.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
