@@ -16,7 +16,15 @@ namespace LinqPractice {
     public static void Init () {
       Console.WriteLine ("Assembly Line Run Time Ready to Go.");
       int[] stuff = { 4, 13, 8, 1, 9 };
-      Random(stuff);
+      Branch(stuff);
+//      Random(stuff);
+    }
+
+    public static void Branch(int[] stuff){
+//      IEnumerable<int> result1 = stuff.Where(i => i<8);
+      var result1 = stuff.Where(i => i<8);
+      var result2 = result1.Where(i => i>2).Select(i => i*2+9); //result1 branches to result2
+      var result3 = result1.OrderBy(i => i).Select(i => i%7).Where(i => i<20); //result1 branches to result3
     }
     
     public static void Random(int[] stuff){
